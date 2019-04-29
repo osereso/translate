@@ -1,12 +1,20 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {AppRegistry, StyleSheet, Text, View, Picker} from 'react-native';
 
 export default class LanguageSelect extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={}>LanguageSelect</Text>
-      </View>
+      <Picker 
+        selectedValue={this.props.language}
+        onValueChange={(lang) => {this.props.onSelect(lang)}}
+        >
+        <Picker.Item label="Hungarian" value="hu" />
+        <Picker.Item label="Spanish" value="es" />
+        <Picker.Item label="Romanian" value="ro" />
+        <Picker.Item label="Slovakian" value="sk" />
+        <Picker.Item label="German" value="de" />
+        <Picker.Item label="English" value="en" />
+      </Picker>
     );
   }
 }
