@@ -25,19 +25,26 @@ export default class App extends Component {
     }
   }
 
-  selectLanguage(lang) {
-    this.setState({language: lang}, () => {
-      console.log('Language switched: ' + lang);
-    })
+  selectLanguage(lang){
+    this.setState({language:lang}, () => {
+      console.log('Language Switched: '+lang);
+    });
   }
 
+  translateText(text){
+    fetch('http://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190429T100623Z.cf4152c447328148.fef41308c9779a877fc2accc38aba3a74bd127c4&lang='+this.state.language+'&text='+text)
+      .then((response) => {
+        let res = JSON.parse(response._bodyText);
+        this.setState({translateText: res.text[0]});
+      });
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <LanguageSelect language={this.state.language} onSelect={this.selectLanguage.bind(this)}/>
-        <TranslateInput />
-        <TranslateOutput />
+        <LanguageSelect language={this.state.language} onSelect={this.selectLanguage.bind(this)} />
+        <TranslateInput onSubmit={this.translateText.bind(this)} />
+        <TranslateOutput translation={this.state.translatedText} />
       </View>
     );
   }
