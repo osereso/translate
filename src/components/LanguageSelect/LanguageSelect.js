@@ -9,7 +9,6 @@ export default class LanguageSelect extends Component {
         onValueChange={(lang) => {this.props.onSelect(lang)}}
         >
         <Picker.Item label="Hungarian" value="hu" />
-        <Picker.Item label="Spanish" value="es" />
         <Picker.Item label="Romanian" value="ro" />
         <Picker.Item label="Slovakian" value="sk" />
         <Picker.Item label="German" value="de" />

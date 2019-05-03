@@ -19,9 +19,7 @@ export default class App extends Component {
     super();
     this.state = {
       translatedText: '',
-      language: 'hu',
-
-
+      language: 'ru',
     }
   }
 
@@ -32,11 +30,16 @@ export default class App extends Component {
   }
 
   translateText(text){
-    fetch('http://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190429T100623Z.cf4152c447328148.fef41308c9779a877fc2accc38aba3a74bd127c4&lang='+this.state.language+'&text='+text)
+    fetch('https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190429T100623Z.cf4152c447328148.fef41308c9779a877fc2accc38aba3a74bd127c4&lang='+this.state.language+'&text='+text)
       .then((response) => {
         let res = JSON.parse(response._bodyText);
-        this.setState({translateText: res.text[0]});
+        this.setState({translatedText: res.text[0]});
       });
+    // fetch('http://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190429T100623Z.cf4152c447328148.fef41308c9779a877fc2accc38aba3a74bd127c4&lang='+this.state.language+'&text='+text)
+    //   .then((response) => {
+    //     let res = JSON.parse(response._bodyText);
+    //     this.setState({translateText: res.text[0]}); 
+    //   });
   }
 
   render() {
